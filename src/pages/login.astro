@@ -1,0 +1,50 @@
+---
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Login">
+  <main
+    class="tw-flex tw-min-h-screen tw-min-w-full tw-flex-col tw-items-center tw-justify-center"
+  >
+    <form
+      class="tw-flex tw-flex-col tw-items-start tw-justify-center tw-gap-4 tw-rounded-lg tw-border tw-border-neutral-900 tw-p-4 tw-shadow-lg"
+      method="post"
+    >
+      <div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
+        <div class="tw-text-xl">{`Log In`}</div>
+        <div class="tw-text-sm">{`For administrator only.`}</div>
+      </div>
+      <div></div>
+      <div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
+        <label for="username" class="tw-text-sm">{`Username`}</label>
+        <input
+          name="username"
+          type="text"
+          class="tw-rounded-md tw-border tw-border-neutral-900 tw-px-2 tw-py-1"
+        />
+      </div>
+      <div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
+        <label for="password" class="tw-text-sm">{`Password`}</label>
+        <input
+          name="password"
+          type="password"
+          class="tw-rounded-md tw-border tw-border-neutral-900 tw-px-2 tw-py-1"
+        />
+      </div>
+      <div></div>
+      <div class="tw-flex tw-w-full tw-flex-row tw-justify-center">
+        <button class="tw-rounded-md tw-bg-blue-300 tw-px-4 tw-py-2 tw-text-lg"
+          >{`LOGIN`}</button
+        >
+      </div>
+    </form>
+  </main>
+</Layout>
+
+<style>
+  html {
+    background: initial;
+  }
+</style>

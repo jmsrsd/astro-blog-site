@@ -1,0 +1,25 @@
+---
+export const prerender = true;
+
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="HTMX">
+  <main class="tw-min-h-screen tw-w-full tw-min-w-full tw-max-w-full">
+    <div
+      class="tw-flex tw-h-screen tw-w-full tw-flex-col tw-items-center tw-justify-center"
+    >
+      <button
+        class="tw-rounded-lg tw-border tw-border-black tw-px-2 tw-py-1"
+        hx-get="/api/example/hello"
+        hx-swap="outerHTML">{`Click me!`}</button
+      >
+    </div>
+  </main>
+</Layout>
+
+<style>
+  html {
+    background: initial;
+  }
+</style>
