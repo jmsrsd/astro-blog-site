@@ -34,6 +34,15 @@ devDependencies:
   '@types/mustache':
     specifier: ^4.2.5
     version: 4.2.5
+  '@webref/css':
+    specifier: ^6.8.3
+    version: 6.8.3(css-tree@2.3.1)
+  '@webref/elements':
+    specifier: ^2.2.2
+    version: 2.2.2
+  '@webref/events':
+    specifier: ^1.8.1
+    version: 1.8.1
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -1049,6 +1058,22 @@ packages:
     resolution: {integrity: sha512-JT5CvrIYYCrmB+dCana8sUqJEcGB1ZDXNLMQ2+42bW995WmNoenijWMUdZfwmuQUTQcEVVIa2OecZzTYWUW9Cg==}
     dev: false
 
+  /@webref/css@6.8.3(css-tree@2.3.1):
+    resolution: {integrity: sha512-4RC2WUh1YLJaSNPranPgUJ5USY4/0/dIzZIDQvNQsQqxIV+NyOFX68xRjFr0lNTafdDVy4snDfpXzN53DwOt/Q==}
+    peerDependencies:
+      css-tree: ^2.3.1
+    dependencies:
+      css-tree: 2.3.1
+    dev: true
+
+  /@webref/elements@2.2.2:
+    resolution: {integrity: sha512-gl6IaktIBI8xufIFozMKGjqlvRty1iZ4EuD+ksSKir6MV8Qkc1Sxy36FCbAmmyoUx6ODGFXCGu06hJJ2V+/tlg==}
+    dev: true
+
+  /@webref/events@1.8.1:
+    resolution: {integrity: sha512-z710J69u1670JuFh/zKEsT0YZN5dJo8rDsq+fTbuZhkqNXPXfNqWFK/VrZEykt0jeJMZDoNUe81UxXoeIbwANw==}
+    dev: true
+
   /acorn@8.11.2:
     resolution: {integrity: sha512-nc0Axzp/0FILLEVsm4fNwLCwMttvhEI263QtVPQcbpfZZ3ts0hLsZGOpE6czNlid7CJ9MlyH8reXkpsf3YUY4w==}
     engines: {node: '>=0.4.0'}
@@ -1486,6 +1511,14 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: false
+
+  /css-tree@2.3.1:
+    resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+    dependencies:
+      mdn-data: 2.0.30
+      source-map-js: 1.0.2
+    dev: true
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -2554,6 +2587,10 @@ packages:
     dependencies:
       '@types/mdast': 3.0.14
     dev: false
+
+  /mdn-data@2.0.30:
+    resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
+    dev: true
 
   /merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -3739,7 +3776,6 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
-    dev: false
 
   /space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
