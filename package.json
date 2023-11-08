@@ -15,10 +15,12 @@
     "@astrojs/tailwind": "^5.0.2",
     "astro": "^3.4.3",
     "htmx.org": "^1.9.8",
+    "mustache": "^4.2.0",
     "tailwindcss": "^3.0.24",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@types/mustache": "^4.2.5",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1",
     "prettier-plugin-tailwindcss": "^0.5.6"

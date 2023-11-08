@@ -11,8 +11,8 @@ import Layout from '../../layouts/Layout.astro';
     >
       <button
         class="tw-rounded-lg tw-border tw-border-black tw-px-2 tw-py-1"
-        hx-get="/api/example/hello"
-        hx-swap="outerHTML">{`Click me!`}</button
+        hx-get={`/example/api/hello`}
+        hx-swap="innerHTML">{`Click me!`}</button
       >
     </div>
   </main>

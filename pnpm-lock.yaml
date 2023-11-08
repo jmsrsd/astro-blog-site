@@ -20,6 +20,9 @@ dependencies:
   htmx.org:
     specifier: ^1.9.8
     version: 1.9.8
+  mustache:
+    specifier: ^4.2.0
+    version: 4.2.0
   tailwindcss:
     specifier: ^3.0.24
     version: 3.3.5
@@ -28,6 +31,9 @@ dependencies:
     version: 5.2.2
 
 devDependencies:
+  '@types/mustache':
+    specifier: ^4.2.5
+    version: 4.2.5
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -946,6 +952,10 @@ packages:
   /@types/ms@0.7.33:
     resolution: {integrity: sha512-AuHIyzR5Hea7ij0P9q7vx7xu4z0C28ucwjAZC0ja7JhINyCnOw8/DnvAPQQ9TfOlCtZAmCERKQX9+o1mgQhuOQ==}
     dev: false
+
+  /@types/mustache@4.2.5:
+    resolution: {integrity: sha512-PLwiVvTBg59tGFL/8VpcGvqOu3L4OuveNvPi0EYbWchRdEVP++yRUXJPFl+CApKEq13017/4Nf7aQ5lTtHUNsA==}
+    dev: true
 
   /@types/nlcst@1.0.3:
     resolution: {integrity: sha512-cpO6PPMz4E++zxP2Vhp/3KVl2Nbtj+Iksb25rlRinG7mphu2zmCIKWWlqdsx1NwJEISogR2eeZTD7JqLOCzaiw==}
@@ -2902,6 +2912,11 @@ packages:
 
   /muggle-string@0.3.1:
     resolution: {integrity: sha512-ckmWDJjphvd/FvZawgygcUeQCxzvohjFO5RxTjj4eq8kw359gFF3E1brjfI+viLMxss5JrHTDRHZvu2/tuy0Qg==}
+    dev: false
+
+  /mustache@4.2.0:
+    resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
+    hasBin: true
     dev: false
 
   /mz@2.7.0:
