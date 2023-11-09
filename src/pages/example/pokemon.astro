@@ -4,66 +4,65 @@ import { createPokemonsElement } from '../../templates/example/createPokemonsEle
 ---
 
 <script>
-  import { createPokemonsElement } from '../../templates/example/createPokemonsElement';
   import htmx from 'htmx.org';
 
   document.body.addEventListener('htmx:afterSwap', function (event: Event) {
-    const detail = (event as any).detail;
+    const { detail } = event as any;
+
+    const { xhr } = detail;
+
+    var jsonResponse: any;
+
+    try {
+      jsonResponse = JSON.parse(xhr.responseText);
+    } catch (_) {}
 
     const endpoint: string = detail.pathInfo.responsePath;
 
-    const response: any = JSON.parse(detail.xhr.responseText);
+    const [, , endpointResourceType] = endpoint
+      .split('/')
+      .map((e) => e.trim())
+      .filter((e) => e != '');
 
-    if (endpoint.includes('/api/v2/pokemon')) {
-      const pokemons = htmx.find('#pokemons');
+    const [resourceType] = endpointResourceType.split('?');
 
-      if (pokemons != null) {
-        const section = document.createElement('div');
+    switch (resourceType) {
+      case 'pokemon':
+        const target = htmx.find('#pokemons');
 
-        const parent = pokemons.parentElement;
-
-        htmx.remove(pokemons);
-
-        parent?.appendChild(section);
-
-        const results = [...response.results].map(({ url, name }) => {
-          const urlParts = (url as string)
-            .split('/')
-            .map((e) => e.trim())
-            .filter((e) => e !== '');
-
-          const id = +urlParts[urlParts.length - 1];
-
-          const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-
-          return `
-<a class="tw-min-w-36 tw-max-w-full tw-max-h-full tw-w-full tw-h-full tw-min-h-36 tw-px-4 tw-py-2 tw-rounded-md tw-border tw-border-neutral-500 tw-bg-neutral-50 tw-flex tw-flex-col tw-items-center tw-justify-center" href="${imgSrc}">
-  <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-items-center tw-justify-center">
-    <img class="tw-h-full tw-w-full tw-object-contain tw-object-center" src="${imgSrc}"/>
-  </div>
-  <p class="tw-w-full tw-text-center tw-text-md tw-truncate tw-text-ellipsis">${name}</p>
-</a>`.trim();
-        });
-
-        if (!!response.next) {
-          results.push(createPokemonsElement(response.next));
+        if (target === null) {
+          break;
         }
 
-        section.outerHTML = results.join('');
+        const parent = target.parentElement;
 
-        htmx.process(document.body);
-      }
+        htmx.remove(target);
+
+        if (jsonResponse === null) {
+          break;
+        }
+
+        const child = document.createElement('div');
+        child.setAttribute('hx-get', '/example/api/pokemons');
+        child.setAttribute('hx-vals', JSON.stringify(jsonResponse));
+        child.setAttribute('hx-swap', 'outerHTML');
+        child.setAttribute('hx-trigger', 'intersect once');
+
+        parent?.appendChild(child);
+
+        htmx.process(child);
+
+        break;
+      default:
+        break;
     }
   });
 </script>
 
 <Layout title="Pokemon">
-  <div
-    class="tw-relative tw-min-h-screen tw-min-w-full tw-overflow-y-auto"
-    hx-history-elt="true"
-  >
+  <div class="tw-relative tw-min-h-screen tw-min-w-full tw-overflow-y-auto">
     <div
-      class="tw-absolute tw-grid tw-min-h-max tw-w-full tw-grid-cols-8 tw-items-center tw-gap-4 tw-overflow-y-auto tw-p-8 tw-pb-24"
+      class="tw-absolute tw-grid tw-min-h-max tw-w-full tw-grid-cols-6 tw-items-center tw-gap-4 tw-overflow-y-auto tw-p-8 tw-pb-24"
       hx-boost="true"
     >
       <Fragment
