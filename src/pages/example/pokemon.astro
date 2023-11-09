@@ -11,20 +11,18 @@ import { createPokemonsElement } from '../../templates/example/createPokemonsEle
 
     const { xhr } = detail;
 
-    var jsonResponse: any;
+    var response: any;
 
     try {
-      jsonResponse = JSON.parse(xhr.responseText);
+      response = JSON.parse(xhr.responseText);
     } catch (_) {}
 
-    const endpoint: string = detail.pathInfo.responsePath;
+    const [endpoint] = `${detail.pathInfo.responsePath}`.split('?');
 
-    const [, , endpointResourceType] = endpoint
+    const [, , resourceType] = endpoint
       .split('/')
       .map((e) => e.trim())
       .filter((e) => e != '');
-
-    const [resourceType] = endpointResourceType.split('?');
 
     switch (resourceType) {
       case 'pokemon':
@@ -38,24 +36,27 @@ import { createPokemonsElement } from '../../templates/example/createPokemonsEle
 
         htmx.remove(target);
 
-        if (jsonResponse === null) {
+        if (response === null) {
           break;
         }
 
         const child = document.createElement('div');
         child.setAttribute('hx-get', '/example/api/pokemons');
-        child.setAttribute('hx-vals', JSON.stringify(jsonResponse));
+        child.setAttribute('hx-vals', JSON.stringify(response));
         child.setAttribute('hx-swap', 'outerHTML');
         child.setAttribute('hx-trigger', 'intersect once');
+        child.setAttribute('id', 'pokemons');
 
         parent?.appendChild(child);
-
-        htmx.process(child);
 
         break;
       default:
         break;
     }
+
+    try {
+      htmx.process(htmx.find('#pokemons')!);
+    } catch (_) {}
   });
 </script>
 
