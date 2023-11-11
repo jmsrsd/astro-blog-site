@@ -1,5 +1,5 @@
-import * as PokemonsLoader from '../../components/PokemonsLoader';
-import * as PokemonTile from '../../components/PokemonTile';
+import { stringified as PokemonsLoader } from '../../components/PokemonsLoader';
+import { stringified as PokemonTile } from '../../components/PokemonTile';
 
 import type { APIContext } from 'astro';
 
@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
 
   const pokemons = data.results as any[];
 
-  const results = pokemons.map(PokemonTile.stringified);
+  const results = pokemons.map(PokemonTile);
 
   if (!!data.next) {
     const endpoint = new URL(`${data.next}`);
@@ -39,7 +39,7 @@ export async function GET(context: APIContext) {
 
     const limit = +(params('limit') ?? '100');
 
-    results.push(PokemonsLoader.stringified({ offset, limit }));
+    results.push(PokemonsLoader({ offset, limit }));
   }
 
   return new Response(results.join(''));
