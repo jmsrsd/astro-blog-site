@@ -1,5 +1,5 @@
-import { stringified as PokemonsLoader } from '../../components/PokemonsLoader';
-import { stringified as PokemonTile } from '../../components/PokemonTile';
+import { stringified as PokemonsLoader } from '../../../components/PokemonsLoader';
+import { stringified as PokemonTile } from '../../../components/PokemonTile';
 
 import type { APIContext } from 'astro';
 
@@ -12,7 +12,7 @@ export async function GET(context: APIContext) {
 
   const offset = +(params('offset') ?? '0');
 
-  const limit = +(params('limit') ?? '100');
+  const limit = +(params('limit') ?? '20');
 
   const endpoint = new URL('https://pokeapi.co/api/v2/pokemon');
 
@@ -37,7 +37,7 @@ export async function GET(context: APIContext) {
 
     const offset = +(params('offset') ?? '0');
 
-    const limit = +(params('limit') ?? '100');
+    const limit = +(params('limit') ?? '20');
 
     results.push(PokemonsLoader({ offset, limit }));
   }

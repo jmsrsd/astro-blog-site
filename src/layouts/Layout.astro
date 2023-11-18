@@ -1,28 +1,52 @@
 ---
 const props = Astro.props;
 
-const overriddenClass = props['class'] as string;
+const overriddenClass = props['class'] ?? '';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="Blog Site Made with Astro.js 🚀" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Blog Site Made with Astro.js 🚀</title>
   </head>
   <body>
+    <script define:vars={{ overriddenClass }}>
+      document.props = { overriddenClass };
+    </script>
     <script>
-      import 'htmx.org';
+      import htmx from 'htmx.org';
+
+      const props = (async () => {
+        const get = () => (document as any).props;
+
+        while (!get()) {
+          await new Promise((resolve) => setTimeout(resolve, 0));
+        }
+
+        return get();
+      })();
+
+      props.then((props) => {
+        const { overriddenClass } = props;
+
+        const main = htmx.find('main');
+
+        main?.setAttribute(
+          'class',
+          [overriddenClass, main.getAttribute('class')].join(' ').trim(),
+        );
+      });
     </script>
     <div
       class="tw-relative tw-flex tw-h-screen tw-max-h-screen tw-min-h-screen tw-w-full tw-min-w-full tw-max-w-full tw-flex-col tw-items-start tw-justify-start tw-overflow-y-auto tw-overflow-x-hidden"
     >
       <main
-        class=`${overriddenClass} tw-absolute tw-flex tw-h-max tw-w-full tw-flex-col tw-items-start tw-justify-start`
+        class="tw-absolute tw-flex tw-h-max tw-w-full tw-flex-col tw-items-start tw-justify-start"
         hx-history-elt="true"
       >
         <slot />

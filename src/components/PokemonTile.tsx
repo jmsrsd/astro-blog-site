@@ -5,7 +5,9 @@ export type PokemonTileProps = {
   name: string;
 };
 
-export default function PokemonTile({ url, name }: PokemonTileProps) {
+export default function PokemonTile(props: PokemonTileProps) {
+  const { url, name } = props;
+
   const resources = url
     .split('/')
     .map((e) => e.trim())
